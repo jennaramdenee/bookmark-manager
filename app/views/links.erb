@@ -1,6 +1,10 @@
 <div>
 <% @link.each do |link| %>
-  Title: <%= link.title %>
-  URL: <%= link.url %>
+  <li>
+    Title: <%= link.title %>
+  </li>
+  <li>
+    URL: <%= link.url %>
+  </li>
   <% end %>
 </div>

@@ -5,10 +5,11 @@ require File.join(File.dirname(__FILE__), '..', 'app/app.rb')
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
-
+require 'database_cleaner'
 require './app/models/link'
 
 Capybara.app = Manager
+
 RSpec.configure do |config|
   config.include Capybara::DSL
   config.expect_with :rspec do |expectations|
@@ -17,6 +18,15 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+
+  config.after(:suite) do
+    DatabaseCleaner.clean
   end
 
 end
