@@ -1,9 +1,11 @@
-
+require 'link'
 
 feature "Viewing links on the homepage" do
   scenario "on loading" do
-    visit "/"
-    expect(page).to have_content "My Bookmarks"
+    Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+
+    visit "/links"
+    expect(page).to have_content "Makers Academy"
   end
 
 end
