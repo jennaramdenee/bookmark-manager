@@ -1,8 +1,7 @@
 ENV['RACK_ENV'] ||= "development"
 
 require 'sinatra/base'
-require 'data_mapper'
-require_relative './models/link.rb'
+require_relative 'data_mapper_setup'
 
 class Manager < Sinatra::Base
 
@@ -16,7 +15,12 @@ class Manager < Sinatra::Base
   end
 
   post '/links' do
-    Link.create(title: params[:title], url: params[:url])
+    link = Link.new(title: params[:title],
+                    url: params[:url] )
+    params[:tags].split(', ').each{ |name|
+      link.tags << Tag.create(name: name)
+    }
+    link.save
     @link = Link.all
     erb(:links)
 
