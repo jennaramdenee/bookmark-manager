@@ -2,6 +2,8 @@ require 'sinatra/base'
 require 'data_mapper'
 require_relative './models/link.rb'
 
+ENV["RACK_ENV"] ||= "development"
+
 class Manager < Sinatra::Base
 
   get '/links' do
