@@ -13,9 +13,9 @@ class Manager < Sinatra::Base
   end
 
   post '/links' do
-    user = User.new(email: params[:email],
+    user = User.create(email: params[:email],
         password: params[:password])
-    user.save
+    p user.email
     session[:user_id] = user.id
     redirect '/links'
   end
@@ -49,9 +49,7 @@ class Manager < Sinatra::Base
 
   helpers do
     def current_user
-      # puts session[:user_id]
-      User.all.each do |a| puts a, a.email, a.password_hash end
-      User.first(id: session[:user_id])
+      @current_user ||= User.get(session[:user_id])
     end
   end
 
