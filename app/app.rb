@@ -6,9 +6,23 @@ require_relative 'data_mapper_setup'
 ENV["RACK_ENV"] ||= "development"
 
 class Manager < Sinatra::Base
+  enable :sessions
+
+  get '/' do
+    erb :sign_up
+  end
+
+  post '/links' do
+    user = User.new(email: params[:email],
+        password: params[:password])
+    user.save
+    session[:user_id] = user.id
+    redirect '/links'
+  end
 
   get '/links' do
     @link = Link.all
+    @user = current_user
     erb :links
   end
 
@@ -29,8 +43,16 @@ class Manager < Sinatra::Base
 
   get '/tags/:name' do
     @tag = Tag.first(name: params[:name])
-    @links = tag ? tag.links : []
+    @links = @tag ? @tag.links : []
     erb(:tags)
+  end
+
+  helpers do
+    def current_user
+      # puts session[:user_id]
+      User.all.each do |a| puts a, a.email, a.password_hash end
+      User.first(id: session[:user_id])
+    end
   end
 
   # start the server if ruby file executed directly
