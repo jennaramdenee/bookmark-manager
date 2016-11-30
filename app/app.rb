@@ -20,12 +20,17 @@ class Manager < Sinatra::Base
     link = Link.new(title: params[:title],
                     url: params[:url] )
     params[:tags].split(', ').each{ |name|
-      link.tags << Tag.create(name: name)
+      link.tags << Tag.first_or_create(name: name)
     }
     link.save
     @link = Link.all
     erb(:links)
+  end
 
+  get '/tags/:name' do
+    @tag = Tag.first(name: params[:name])
+    @links = tag ? tag.links : []
+    erb(:tags)
   end
 
   # start the server if ruby file executed directly
