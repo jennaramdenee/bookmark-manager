@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+<<<<<<< HEAD
 ruby "2.3.3"
 
 gem "datamapper"
@@ -20,3 +21,15 @@ group :test do
   gem 'byebug'
   gem 'database_cleaner'
 end
+=======
+
+ruby '2.3.1'
+
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
+gem 'capybara'
+gem 'rspec'
+gem 'sinatra'
+gem 'rspec-sinatra'
+gem 'database_cleaner'
+>>>>>>> d7cff8d6c08aeb934ef91e9ca5031dad48d6c11e
