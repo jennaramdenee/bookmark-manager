@@ -13,3 +13,4 @@ source "https://rubygems.org"
  gem 'database_cleaner'
  gem 'dm-transactions'
  gem 'rack', '~> 1.5'
+ gem 'rake'
