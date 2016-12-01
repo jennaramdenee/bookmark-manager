@@ -14,3 +14,4 @@ source "https://rubygems.org"
  gem 'dm-transactions'
  gem 'rack', '~> 1.5'
  gem 'rake'
+ gem 'bcrypt'

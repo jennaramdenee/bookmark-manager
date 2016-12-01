@@ -11,6 +11,7 @@ class Link
 
   has n, :tags, :through => Resource
 
-
+  # belongs_to :user
+  # has 1, :user
 
 end
