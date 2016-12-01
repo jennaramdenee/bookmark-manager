@@ -6,11 +6,10 @@ feature "Creating tags" do
     visit '/links/new'
     fill_in('title', with: 'Google')
     fill_in('URL', with: 'www.google.co.uk')
-    fill_in('tags', with: 'search engine')
+    fill_in('tag_name', with: 'search engine')
     click_button('Submit')
 
-    within 'ul#links' do
-      expect(page).to have_content('search engine')
-    end
+    link = Link.first
+    expect(link.tags.map(&:tag_name)).to include('search engine')
   end
 end
