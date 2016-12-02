@@ -8,8 +8,18 @@ class User
 
 
   property :id, Serial
-  property :email, String, required: true, :format => :email_address
+  property :email, String,
+    :required => true,
+    :format => :email_address,
+    :unique => true
+    # :messages => {
+    #   :is_unique => "Email address has already been signed up",
+    #   :format => "Email address is not in the correct format",
+    #   :presence => "Email address required"
+    # }
+
   property :password_digest, Text
+
   attr_accessor :password_confirmation
   attr_reader :password
 
