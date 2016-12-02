@@ -12,11 +12,6 @@ class User
     :required => true,
     :format => :email_address,
     :unique => true
-    # :messages => {
-    #   :is_unique => "Email address has already been signed up",
-    #   :format => "Email address is not in the correct format",
-    #   :presence => "Email address required"
-    # }
 
   property :password_digest, Text
 
@@ -25,11 +20,9 @@ class User
 
   validates_confirmation_of :password
 
-
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
-  # has n, :links
 
 end
