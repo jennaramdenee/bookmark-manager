@@ -10,5 +10,4 @@ feature 'signing in' do
     expect(page).to have_content('Welcome email@gmail.com')
   end
 
-
 end
