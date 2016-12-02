@@ -15,3 +15,4 @@ source "https://rubygems.org"
  gem 'rack', '~> 1.5'
  gem 'rake'
  gem 'bcrypt'
+ gem 'dm-validations'
