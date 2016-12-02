@@ -21,5 +21,26 @@ feature "creating new users" do
     expect(User.all.count).to eq 1
   end
 
+  scenario "visit signup page and create account with no email" do
+    visit '/users/new'
+    fill_in('password', with: 'password1234')
+    fill_in('password_confirmation', with: 'password1234')
+    click_button('Submit')
+    expect(current_path).to eq '/users'
+    expect(User.all.count).to eq 0
+  end
+
+  scenario "visit signup page and create account with invalid email" do
+    visit '/users/new'
+    fill_in('email', with: 'emailgmail.com')
+    fill_in('password', with: 'password1234')
+    fill_in('password_confirmation', with: 'password1234')
+    click_button('Submit')
+    expect(current_path).to eq '/users'
+    expect(User.all.count).to eq 0
+  end
+
+
+
 
 end
