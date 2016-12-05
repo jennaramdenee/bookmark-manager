@@ -17,3 +17,4 @@ source "https://rubygems.org"
  gem 'bcrypt'
  gem 'dm-validations'
  gem 'sinatra-flash'
+ gem 'sinatra-partial'
